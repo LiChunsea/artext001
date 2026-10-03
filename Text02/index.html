@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body>
+  <a-scene mindar-image="imageTargetSrc: ./targets/targets.mind;"
+           color-space="sRGB"
+           renderer="colorManagement: true, physicallyCorrectLights"
+           vr-mode-ui="enabled: false"
+           device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <a-asset-item id="model1" src="./models/gal-b-lantern-4120.glb"></a-asset-item>
+      <a-asset-item id="model2" src="./models/pixellabs-glb-3347.glb"></a-asset-item>
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- targetIndex: 0 對應 .mind 檔裡的第 1 張畫 -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5"
+                    src="#model1" animation-mixer></a-gltf-model>
+    </a-entity>
+
+    <!-- 為第二張目標（例如 tea.jpg）新增對應的 targetIndex: 1 -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.5 0.5 0.5"
+                    src="#model2" animation-mixer></a-gltf-model>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
